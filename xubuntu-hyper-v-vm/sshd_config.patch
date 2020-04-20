@@ -1,0 +1,78 @@
+--- /etc/ssh/sshd_config	2019-09-12 21:53:16.000000000 +0300
++++ sshd_config.new	2020-04-18 22:45:26.311040916 +0300
+@@ -23,18 +23,18 @@
+ #RekeyLimit default none
+ 
+ # Logging
+-#SyslogFacility AUTH
+-#LogLevel INFO
++SyslogFacility AUTH
++LogLevel INFO
+ 
+ # Authentication:
+ 
+-#LoginGraceTime 2m
+-#PermitRootLogin prohibit-password
+-#StrictModes yes
++LoginGraceTime 60
++PermitRootLogin no
++StrictModes yes
+ #MaxAuthTries 6
+ #MaxSessions 10
+ 
+-#PubkeyAuthentication yes
++PubkeyAuthentication yes
+ 
+ # Expect .ssh/authorized_keys2 to be disregarded by default in future.
+ #AuthorizedKeysFile	.ssh/authorized_keys .ssh/authorized_keys2
+@@ -47,18 +47,18 @@
+ # For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+ #HostbasedAuthentication no
+ # Change to yes if you don't trust ~/.ssh/known_hosts for
+-# HostbasedAuthentication
++HostbasedAuthentication no
+ #IgnoreUserKnownHosts no
+ # Don't read the user's ~/.rhosts and ~/.shosts files
+-#IgnoreRhosts yes
++IgnoreRhosts yes
+ 
+ # To disable tunneled clear text passwords, change to no here!
+-#PasswordAuthentication yes
+-#PermitEmptyPasswords no
++PasswordAuthentication yes
++PermitEmptyPasswords no
+ 
+ # Change to yes to enable challenge-response passwords (beware issues with
+ # some PAM modules and threads)
+-ChallengeResponseAuthentication no
++#ChallengeResponseAuthentication no
+ 
+ # Kerberos options
+ #KerberosAuthentication no
+@@ -86,20 +86,20 @@
+ #AllowAgentForwarding yes
+ #AllowTcpForwarding yes
+ #GatewayPorts no
+-X11Forwarding yes
++#X11Forwarding yes
+ #X11DisplayOffset 10
+ #X11UseLocalhost yes
+ #PermitTTY yes
+ PrintMotd no
+-#PrintLastLog yes
+-#TCPKeepAlive yes
++PrintLastLog yes
++TCPKeepAlive no
+ #PermitUserEnvironment no
+ #Compression delayed
+-#ClientAliveInterval 0
+-#ClientAliveCountMax 3
++ClientAliveInterval 20
++ClientAliveCountMax 3
+ #UseDNS no
+ #PidFile /var/run/sshd.pid
+-#MaxStartups 10:30:100
++MaxStartups 3:30:9
+ #PermitTunnel no
+ #ChrootDirectory none
+ #VersionAddendum none
